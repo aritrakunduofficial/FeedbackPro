@@ -1,11 +1,4 @@
 {
-  "/auth/login/page": "app/auth/login/page.js",
-  "/student/login/page": "app/student/login/page.js",
-  "/student/feedback/page": "app/student/feedback/page.js",
-  "/student/confirmation/page": "app/student/confirmation/page.js",
-  "/page": "app/page.js",
-  "/admin/questions/page": "app/admin/questions/page.js",
-  "/admin/faculty-assignments/page": "app/admin/faculty-assignments/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/admin/analytics/page": "app/admin/analytics/page.js"
+  "/admin/tokens/page": "app/admin/tokens/page.js"
 }

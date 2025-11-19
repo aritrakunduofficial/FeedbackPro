@@ -1,4 +1,4 @@
-// File: D:\Projects\FEEDBACKPRO 18-11-25\src\app\admin\layout.js
+// File: /home/cl1m14/WORK/FeedbackPro 19-11/src/app/admin/layout.js
 import * as entry from '../../../../src/app/admin/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
