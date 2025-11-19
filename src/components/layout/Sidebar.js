@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // 'use client'
 
 // import { useState } from 'react'
@@ -135,11 +136,17 @@
 
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+=======
+"use client";
+
+import { useRouter, usePathname } from "next/navigation";
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
 import {
   LayoutDashboard,
   Building2,
   Users,
   GraduationCap,
+<<<<<<< HEAD
   FileText,
   HelpCircle,
   Key,
@@ -180,11 +187,51 @@ export default function Sidebar() {
   const handleLogout = async () => {
     await logout();
     router.push("/auth/login");
+=======
+  FileQuestion,
+  ClipboardList,
+  Key,
+  BarChart3,
+  LogOut,
+  Menu,
+  X,
+} from "lucide-react";
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+
+export default function Sidebar() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const { user, logout } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const menuItems = [
+    { icon: LayoutDashboard, label: "Dashboard", path: "/admin/dashboard" },
+    {
+      icon: ClipboardList,
+      label: "Questionnaires",
+      path: "/admin/questionnaires",
+    },
+    { icon: FileQuestion, label: "Questions", path: "/admin/questions" },
+    { icon: Building2, label: "Departments", path: "/admin/departments" },
+    { icon: Users, label: "Faculty", path: "/admin/faculty" },
+    { icon: GraduationCap, label: "Students", path: "/admin/students" },
+    { icon: Key, label: "Tokens", path: "/admin/tokens" },
+    { icon: BarChart3, label: "Analytics", path: "/admin/analytics" },
+  ];
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
   };
 
   return (
     <>
+<<<<<<< HEAD
       {/* Mobile Toggle */}
+=======
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-blue-600 text-white rounded-lg"
@@ -192,6 +239,7 @@ export default function Sidebar() {
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
+<<<<<<< HEAD
       {/* Sidebar */}
       <aside
         className={`
@@ -229,6 +277,31 @@ export default function Sidebar() {
                   key={item.href}
                   onClick={() => {
                     router.push(item.href);
+=======
+      <aside
+        className={`
+        fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 
+        transform transition-transform duration-300 ease-in-out
+        ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+      `}
+      >
+        <div className="flex flex-col h-full">
+          <div className="p-6 border-b">
+            <h2 className="text-xl font-bold text-gray-900">FeedbackPro</h2>
+            <p className="text-sm text-gray-600 mt-1">{user?.name}</p>
+          </div>
+
+          <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = pathname === item.path;
+
+              return (
+                <button
+                  key={item.path}
+                  onClick={() => {
+                    router.push(item.path);
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
                     setIsOpen(false);
                   }}
                   className={`
@@ -246,10 +319,26 @@ export default function Sidebar() {
               );
             })}
           </nav>
+<<<<<<< HEAD
         </div>
       </aside>
 
       {/* Dim overlay when open */}
+=======
+
+          <div className="p-4 border-t">
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+            >
+              <LogOut className="w-5 h-5" />
+              <span className="font-medium">Logout</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}

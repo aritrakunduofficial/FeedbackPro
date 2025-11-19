@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // 'use client'
 
 // import { useState, useEffect } from 'react'
@@ -286,6 +287,12 @@
 
 import { useState, useEffect } from 'react'
 import { Plus, Edit, Trash2, Users, BookOpen, Eye } from 'lucide-react'
+=======
+'use client'
+
+import { useState, useEffect } from 'react'
+import { Plus, Edit, Trash2, Users } from 'lucide-react'
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
 import { supabase } from '../../../lib/supabase'
 import { useAuth } from '../../../context/AuthContext'
 import Button from '../../../components/ui/Button'
@@ -293,28 +300,45 @@ import Input from '../../../components/ui/Input'
 import Card from '../../../components/ui/Card'
 import Modal from '../../../components/ui/Modal'
 import Table from '../../../components/ui/Table'
+<<<<<<< HEAD
 import { useRouter } from 'next/navigation'
 
 export default function FacultyPage() {
   const { user } = useAuth()
   const router = useRouter()
+=======
+
+export default function FacultyPage() {
+  const { user } = useAuth()
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
   const [faculty, setFaculty] = useState([])
   const [departments, setDepartments] = useState([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
   const [editingFaculty, setEditingFaculty] = useState(null)
+<<<<<<< HEAD
   const [viewingAssignments, setViewingAssignments] = useState(null)
   const [assignments, setAssignments] = useState([])
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+=======
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subjects: '',
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
     departmentIds: []
   })
 
   useEffect(() => {
+<<<<<<< HEAD
     if (user) {
       fetchData()
     }
+=======
+    fetchData()
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
   }, [user])
 
   async function fetchData() {
@@ -346,6 +370,7 @@ export default function FacultyPage() {
     }
   }
 
+<<<<<<< HEAD
   async function viewAssignments(facultyId) {
     try {
       const { data, error } = await supabase
@@ -369,6 +394,8 @@ export default function FacultyPage() {
     }
   }
 
+=======
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
   async function handleSubmit(e) {
     e.preventDefault()
     
@@ -379,7 +406,12 @@ export default function FacultyPage() {
           .from('faculty')
           .update({
             name: formData.name,
+<<<<<<< HEAD
             email: formData.email
+=======
+            email: formData.email,
+            subjects: formData.subjects
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
           })
           .eq('id', editingFaculty.id)
 
@@ -404,7 +436,11 @@ export default function FacultyPage() {
             college_id: user.id,
             name: formData.name,
             email: formData.email,
+<<<<<<< HEAD
             subjects: null // No longer used, managed via assignments
+=======
+            subjects: formData.subjects
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
           }])
           .select()
           .single()
@@ -418,12 +454,20 @@ export default function FacultyPage() {
             .insert({ faculty_id: newFaculty.id, department_id: deptId })
         }
 
+<<<<<<< HEAD
         alert('Faculty added! Now assign subjects in Faculty Assignments.')
+=======
+        alert('Faculty added!')
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
       }
 
       setShowModal(false)
       setEditingFaculty(null)
+<<<<<<< HEAD
       setFormData({ name: '', email: '', departmentIds: [] })
+=======
+      setFormData({ name: '', email: '', subjects: '', departmentIds: [] })
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
       fetchData()
     } catch (error) {
       console.error('Error:', error)
@@ -432,7 +476,11 @@ export default function FacultyPage() {
   }
 
   async function handleDelete(id) {
+<<<<<<< HEAD
     if (!confirm('Delete this faculty member? This will remove all their assignments.')) return
+=======
+    if (!confirm('Delete this faculty member?')) return
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
 
     try {
       await supabase.from('faculty').delete().eq('id', id)
@@ -450,11 +498,19 @@ export default function FacultyPage() {
       setFormData({
         name: fac.name,
         email: fac.email,
+<<<<<<< HEAD
+=======
+        subjects: fac.subjects,
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
         departmentIds: fac.faculty_departments.map(fd => fd.department_id)
       })
     } else {
       setEditingFaculty(null)
+<<<<<<< HEAD
       setFormData({ name: '', email: '', departmentIds: [] })
+=======
+      setFormData({ name: '', email: '', subjects: '', departmentIds: [] })
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
     }
     setShowModal(true)
   }
@@ -468,6 +524,7 @@ export default function FacultyPage() {
           <h1 className="text-3xl font-bold text-gray-900">Faculty</h1>
           <p className="text-gray-600 mt-1">Manage faculty members</p>
         </div>
+<<<<<<< HEAD
         <div className="flex gap-3">
           <Button 
             variant="outline" 
@@ -481,6 +538,12 @@ export default function FacultyPage() {
             Add Faculty
           </Button>
         </div>
+=======
+        <Button onClick={() => openModal()}>
+          <Plus className="w-5 h-5 mr-2" />
+          Add Faculty
+        </Button>
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
       </div>
 
       {faculty.length === 0 ? (
@@ -493,6 +556,7 @@ export default function FacultyPage() {
       ) : (
         <Card>
           <Table
+<<<<<<< HEAD
             headers={['Name', 'Email', 'Departments', 'Actions']}
             data={faculty}
             renderRow={(fac) => (
@@ -501,6 +565,15 @@ export default function FacultyPage() {
                   <div className="font-medium text-gray-900">{fac.name}</div>
                 </td>
                 <td className="px-6 py-4 text-gray-600">{fac.email}</td>
+=======
+            headers={['Name', 'Email', 'Subjects', 'Departments', 'Actions']}
+            data={faculty}
+            renderRow={(fac) => (
+              <>
+                <td className="px-6 py-4">{fac.name}</td>
+                <td className="px-6 py-4">{fac.email}</td>
+                <td className="px-6 py-4">{fac.subjects}</td>
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
                 <td className="px-6 py-4">
                   <div className="flex flex-wrap gap-1">
                     {fac.faculty_departments.map(fd => (
@@ -513,6 +586,7 @@ export default function FacultyPage() {
                 <td className="px-6 py-4">
                   <div className="flex gap-2">
                     <button
+<<<<<<< HEAD
                       onClick={() => viewAssignments(fac.id)}
                       className="p-2 text-purple-600 hover:bg-purple-50 rounded"
                       title="View Assignments"
@@ -520,6 +594,8 @@ export default function FacultyPage() {
                       <Eye className="w-4 h-4" />
                     </button>
                     <button
+=======
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
                       onClick={() => openModal(fac)}
                       className="p-2 text-blue-600 hover:bg-blue-50 rounded"
                     >
@@ -539,13 +615,20 @@ export default function FacultyPage() {
         </Card>
       )}
 
+<<<<<<< HEAD
       {/* Add/Edit Modal */}
+=======
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
       {showModal && (
         <Modal
           title={editingFaculty ? 'Edit Faculty' : 'Add Faculty'}
           onClose={() => setShowModal(false)}
         >
+<<<<<<< HEAD
           <div className="space-y-4">
+=======
+          <form onSubmit={handleSubmit} className="space-y-4">
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
             <Input
               label="Name"
               value={formData.name}
@@ -558,6 +641,15 @@ export default function FacultyPage() {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
+<<<<<<< HEAD
+=======
+            <Input
+              label="Subjects"
+              value={formData.subjects}
+              onChange={(e) => setFormData({ ...formData, subjects: e.target.value })}
+              placeholder="e.g., Data Structures, Algorithms"
+            />
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Departments *
@@ -590,6 +682,7 @@ export default function FacultyPage() {
                 ))
               )}
             </div>
+<<<<<<< HEAD
             <div className="flex gap-3 justify-end pt-4 border-t">
               <Button variant="secondary" onClick={() => setShowModal(false)}>
                 Cancel
@@ -646,8 +739,23 @@ export default function FacultyPage() {
               ))}
             </div>
           )}
+=======
+            <div className="flex gap-3 justify-end">
+              <Button type="button" variant="secondary" onClick={() => setShowModal(false)}>
+                Cancel
+              </Button>
+              <Button type="submit">
+                {editingFaculty ? 'Update' : 'Add'}
+              </Button>
+            </div>
+          </form>
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
         </Modal>
       )}
     </div>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 32bd3de89cc94e9e7641b3c5ee941e0fc20081ca
